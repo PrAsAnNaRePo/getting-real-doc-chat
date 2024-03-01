@@ -93,7 +93,8 @@ if prompt := st.chat_input("Enter your message..."):
     with st.chat_message("user"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
-        loader_data(file_path)
+        with st.spinner(text="Loading docs.."):
+            loader_data(file_path)
         message_placeholder = st.empty()
         try:
             response = st.session_state.chat.send_message(prompt)
