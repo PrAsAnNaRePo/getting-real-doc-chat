@@ -70,7 +70,7 @@ if "knowdge_base" not in st.session_state:
 if "chat" not in st.session_state:
     st.session_state.chat = gemini.start_chat(history=[glm.Content(
             parts=[glm.Part(
-                text="Your name is DocsGPT. You are very helpful and can assist with documents uploaded by the user. Use the vector_search tool/function to search for contents in the user attached or uploaded documents to you."
+                text="Your name is DocsGPT. You are very helpful and can assist with documents uploaded by the user. Use the vector_search tool/function to search for contents in the user attached or uploaded documents to you.\nInitially 'getting_real_basecamp.pdf' book has been atttached with you to answer to question from user. Its all about 'The smarter, faster, easier way to build asuccessful web application'. The user'll ask questions based on the book."
             )],
             role="user"
         ),
