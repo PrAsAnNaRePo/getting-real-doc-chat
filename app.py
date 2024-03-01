@@ -58,7 +58,6 @@ def loader_data(file_path):
         embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
         vector_store = Chroma.from_texts(texts, embeddings).as_retriever()
         st.session_state.knowdge_base = vector_store
-        st.write('ready to chat now...')
     except:
         return None
 
@@ -86,14 +85,15 @@ for history in st.session_state.history:
     with st.chat_message(history["role"]):
         st.markdown(history["text"])
 
-if st.session_state.knowdge_base is None:
-    loader_data(file_path)
+# if st.session_state.knowdge_base is None:
+#     loader_data(file_path)
 
 if prompt := st.chat_input("Enter your message..."):
     st.session_state.history.append({"role": "user", "text": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
+        loader_data(file_path)
         message_placeholder = st.empty()
         try:
             response = st.session_state.chat.send_message(prompt)
