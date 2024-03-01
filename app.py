@@ -58,6 +58,7 @@ def loader_data(file_path):
         embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
         vector_store = Chroma.from_texts(texts, embeddings).as_retriever()
         st.session_state.knowdge_base = vector_store
+        st.write('ready to chat now...')
     except:
         return None
 
